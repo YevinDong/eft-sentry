@@ -1,0 +1,29 @@
+{
+  "name": "eft-sentry",
+  "version": "0.0.2",
+  "description": "",
+  "module": "lib/src/index.js",
+  "jsnext:main": "lib/src/index.js",
+  "scripts": {
+    "clear": "node commands/clear.js",
+    "build": "npm run clear && tsc --version && tsc && node commands/cp.js",
+    "build:pack": "npm run build && npm pack",
+    "release": "node commands/release.js"
+  },
+  "files": [
+    "lib",
+    "README.md",
+    "package.json"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sentry/tracing": "^7.24.2",
+    "@sentry/vue": "^7.24.2",
+    "chalk": "^4.1.0",
+    "inquirer": "^7.3.3",
+    "log-symbols": "^4.0.0",
+    "shelljs": "^0.8.5"
+  }
+}
