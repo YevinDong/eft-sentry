@@ -47,6 +47,7 @@ export default class Init {
                 Sentry.init({
                     // # if vue2, use app; if vue3, use app;
                     ...isVue2 ? { Vue: (app as VUE) } : { app },
+                    // # sentry releases name!!
                     environment: this.config.environment || env.NODE_ENV || "production",
                     dsn: this.config.dsn,
                     integrations: [

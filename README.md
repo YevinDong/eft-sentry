@@ -22,6 +22,7 @@ yarn add eft-sentry
 |    Vanilla    |   [Jump](#vanilla)   |
 |     React     |    [Jump](#react)    |
 | React Native  | [Jump](#reactnative) |
+|   Souce Map   |  [Jump](#soucemap)   |
 
 &nbsp;
 
@@ -144,3 +145,28 @@ interface config = {
 # React
 
 > TODO ...
+
+# soucemap
+
+```bash
+# install 
+npm install @sentry/cli -g
+```
+
+在项目根目录创建 `.sentryclirc`文件
+
+```rc
+[defaults]
+url=https://sentry.io/
+org=eft-sc
+project=PROJECT_NAME
+[auth]
+token=PROJECT_AUTH_TOKEN
+```
+
+```bash
+# 清除版本号的sourcemap
+sentry-cli releases files <版本号> delete --all
+# 上传
+sentry-cli releases [-o 组织名] [-p 项目名] files <版本号> upload-sourcemaps <打包后的js目录> --url-prefix <线上js访问地址>
+```
