@@ -39,9 +39,10 @@ export default class Init {
             console.log("❌ [sentry]:Sentry has been initialized.")
             return Init.singleton;
         }
+        Init.isDev = isDev
         isProdRunFn(
             // # Determine whether it is a production environment；
-            Init.isDev = isDev
+            Init.isDev 
             , () => {
                 this.config = Object.assign({}, localConfig, config);
                 Sentry.init({
