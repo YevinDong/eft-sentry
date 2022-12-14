@@ -103,7 +103,11 @@ options.app : Vue | Vue[];
 
 Vue router
 
-### **`options.env`**
+### **`options.isDev`**
+
+如果是本地环境，会跳过sentry的初始化,比如 用yarn dev 这种本地命令启动的环境
+
+### **`options.env`**(0.1.1之后废弃， 不同版本的打包工具会有不同的环境变量，直接删除掉)
 
 用到的两个属性`npm_lifecycle_event`和`NODE_ENV`
 

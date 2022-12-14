@@ -9,7 +9,7 @@ import type { Vue as VUE } from "@sentry/vue/types/types";
 export interface SENTRY_PROPS {
     app: VUE | VUE[];
     router: VUE_ROUTER;
-    env: any;
+    isDev: boolean;
     config: SENTRY_CONFIG;
     isVue2?: boolean;
 }
@@ -30,10 +30,10 @@ export default class Init {
         isProdRunFn(Init.isDev, () => {
             isInitRunFn(Init.isInit, () => {
                 typeof cb === "function" && cb();
-            }) 
+            })
         })
     }
-    constructor({ app, router, isVue2, config, env = {} }: SENTRY_PROPS) {
+    constructor({ app, router, isVue2, config, isDev }: SENTRY_PROPS) {
         // # Singleton mode to prevent repeated initialization；
         if (Init.singleton) {
             console.log("❌ [sentry]:Sentry has been initialized.")
@@ -41,14 +41,14 @@ export default class Init {
         }
         isProdRunFn(
             // # Determine whether it is a production environment；
-            Init.isDev = env.npm_lifecycle_event === "dev"
+            Init.isDev = isDev
             , () => {
                 this.config = Object.assign({}, localConfig, config);
                 Sentry.init({
                     // # if vue2, use app; if vue3, use app;
                     ...isVue2 ? { Vue: (app as VUE) } : { app },
                     // # sentry releases name!!
-                    environment: this.config.environment || env.NODE_ENV || "production",
+                    environment: this.config.environment || "production",
                     dsn: this.config.dsn,
                     integrations: [
                         new BrowserTracing({
