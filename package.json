@@ -1,6 +1,6 @@
 {
   "name": "eft-sentry",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "module": "lib/src/index.js",
   "jsnext:main": "lib/src/index.js",
